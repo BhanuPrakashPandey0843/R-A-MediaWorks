@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   R&A MediaWorks — Design Tokens
+   Placeholder brand palette (Navy / Gold / Ivory). Swap the hex values below
+   once final brand colors are supplied — every component consuming these
+   tokens (via Tailwind utilities like bg-navy-900 or text-gold-500) will
+   update automatically since nothing is hardcoded downstream.
+   ========================================================================== */
+
+@theme {
+  /* Navy — primary brand color, depth scale */
+  --color-navy-950: #050b16;
+  --color-navy-900: #0a1428;
+  --color-navy-800: #0f1e3d;
+  --color-navy-700: #162a52;
+  --color-navy-600: #1f3a6e;
+  --color-navy-500: #2c4d8f;
+
+  /* Gold — accent brand color */
+  --color-gold-600: #a6811f;
+  --color-gold-500: #c6a15b;
+  --color-gold-400: #d8bb7e;
+  --color-gold-300: #e8d6ab;
+  --color-gold-200: #f3e9d2;
+
+  /* Neutrals */
+  --color-ivory: #faf8f3;
+  --color-ink: #0b1220;
+  --color-mist-900: #3a3f4a;
+  --color-mist-700: #5c6270;
+  --color-mist-500: #8b90a0;
+  --color-mist-300: #d8dae2;
+  --color-mist-100: #eef0f4;
+
+  /* Semantic aliases — reference the palette above, not raw hex */
+  --color-background: var(--color-ivory);
+  --color-foreground: var(--color-ink);
+  --color-primary: var(--color-navy-900);
+  --color-accent: var(--color-gold-500);
+  --color-muted: var(--color-mist-700);
+  --color-border: var(--color-mist-300);
+  --color-surface: #ffffff;
+
+  /* Typography */
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-manrope);
+}
+
+/* Non-color tokens — not routed through @theme since they don't need to
+   generate Tailwind color utilities, only used via CSS / arbitrary values. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --max-width-content: 1440px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--color-border);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-navy-900);
+  color: var(--color-gold-300);
+}
+
+/* Slim, quiet scrollbar that still feels premium */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-mist-300);
+  border-radius: 999px;
+  border: 2px solid var(--color-ivory);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mist-500);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Elegant underline reveal used by nav links and inline text links */
+.link-underline {
+  position: relative;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.45s var(--ease-premium);
+}
+.link-underline:hover,
+.link-underline[data-active="true"] {
+  background-size: 100% 1px;
+}
+
+/* Infinite marquee track used by the Industries strip */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee-scroll 32s linear infinite;
 }
