@@ -1,23 +1,91 @@
 export const SITE = {
   name: "R&A MediaWorks",
   shortName: "R&A",
-  tagline: "A Boutique Communications & Branding Studio",
+  tagline: "Global Experience Local Soul",
   description:
-    "R&A MediaWorks crafts premium brand identities, communications strategy, and media storytelling for organizations who refuse to look ordinary.",
-  email: "hello@ramediaworks.com",
-  phone: "+1 (555) 018-2044",
-  location: "New York, NY — working with clients worldwide",
+    "R&A MediaWorks is a boutique Communications & Branding Studio, home in Southwestern Ontario. We help small and mid-size businesses find their voice and build a presence that earns attention, and keeps it.",
+  email: "mediaworkshere@gmail.com",
+  phone: "+1 647-339-1987",
+  location: "Serving Southwestern Ontario. Available remotely across Canada.",
   social: {
-    instagram: "https://instagram.com",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    facebook: "",
+    instagram: "",
+    linkedin: "",
+    twitter: "",
   },
 } as const;
 
+/**
+ * Consultation booking CTA.
+ *
+ * Launch plan: start with a Calendly (or similar) scheduling link so people
+ * can book a slot directly. Once the Calendly account is set up, replace
+ * `calendlyUrl` below with the real scheduling link — every "Book a
+ * Consultation" button in the app reads from this constant, so nothing else
+ * needs to change.
+ *
+ * Until then, `calendlyUrl` is left empty and every CTA falls back
+ * automatically to a mailto: link with a pre-filled subject line, per the
+ * client's fallback instructions.
+ */
+const calendlyUrl = "";
+
+const mailtoFallback = `mailto:${SITE.email}?subject=${encodeURIComponent(
+  "Consultation Request"
+)}`;
+
+export const CONSULTATION_LINK = calendlyUrl || mailtoFallback;
+
+// Primary nav. About / Services / Contact are anchors on the homepage
+// single-page scroll; Blog is its own routed page (for SEO indexing of
+// individual posts). When rendered on a page other than "/", the anchors
+// resolve to "/#about" etc. so clicking them navigates home and scrolls.
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Our Work", href: "/our-work" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
+
+export type Service = {
+  title: string;
+  description: string;
+};
+
+// The 8 offerings, in the order supplied by the client.
+export const SERVICES: Service[] = [
+  {
+    title: "Social Media",
+    description: "Content with a point of view, not just a posting schedule.",
+  },
+  {
+    title: "Website & Content",
+    description: "Copy that reads like it means it.",
+  },
+  {
+    title: "Branding",
+    description: "Identity and narrative built to be remembered.",
+  },
+  {
+    title: "Digital Marketing",
+    description:
+      "Strategy aimed at the audience that matters, not just the algorithm.",
+  },
+  {
+    title: "Business Communication",
+    description: "Writing that carries weight, internally and out.",
+  },
+  {
+    title: "PR & Media Outreach",
+    description: "Pitches sharp enough to earn the read.",
+  },
+  {
+    title: "Video Production",
+    description: "Short-form storytelling, shot and edited with intent.",
+  },
+  {
+    title: "Crisis Communication",
+    description: "Clarity when it's needed most, and composure when it counts.",
+  },
+];

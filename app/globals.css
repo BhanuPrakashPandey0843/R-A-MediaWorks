@@ -25,6 +25,7 @@
   --color-gold-200: #f3e9d2;
 
   /* DigBiz-style navbar & hero palette (deep navy + orange accent) */
+  --color-brand-navy-950: #12123f;
   --color-brand-navy-900: #1c1c6c;
   --color-brand-navy-800: #232378;
   --color-brand-navy-700: #2c2c86;
@@ -65,6 +66,13 @@
 
 * {
   border-color: var(--color-border);
+}
+
+/* Smooth in-page jumps for the anchor nav (About / Services / Contact),
+   offset so content doesn't land underneath the fixed navbar. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {

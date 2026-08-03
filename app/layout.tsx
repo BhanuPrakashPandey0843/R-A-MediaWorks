@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { playfair, manrope } from "@/lib/fonts";
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 import { SITE } from "@/constants/site";
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className="flex min-h-svh flex-col bg-brand-navy-900 text-ink">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
