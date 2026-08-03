@@ -4,15 +4,26 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
-import { NAV_LINKS, SITE } from "@/constants/site";
+import { Menu, X, ChevronDown, Boxes } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+const NAV_ITEMS = [
+  { label: "Home", href: "/" },
+  {
+    label: "Pages",
+    href: "/contact",
+    children: [{ label: "Contact", href: "/contact" }],
+  },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/our-work" },
+  { label: "About", href: "/about" },
+] as const;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [pagesOpen, setPagesOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -26,6 +37,7 @@ export function Navbar() {
 
   useEffect(() => {
     setOpen(false);
+    setPagesOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -38,48 +50,109 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        scrolled || open
-          ? "bg-ivory/85 backdrop-blur-md shadow-[0_1px_0_0_rgba(11,18,32,0.06)]"
-          : "bg-transparent"
+        "fixed inset-x-0 top-0 z-50 bg-brand-navy-900 transition-shadow duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        scrolled || open ? "shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35)]" : ""
       )}
     >
       <Container>
-        <div className="flex h-20 items-center justify-between lg:h-24">
-          <Link
-            href="/"
-            className="font-display text-xl font-semibold tracking-tight text-navy-950 lg:text-2xl"
-          >
-            R&amp;A <span className="text-gold-600">MediaWorks</span>
+        <div className="flex h-16 items-center justify-between lg:h-20">
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="flex size-8 items-center justify-center rounded-md bg-brand-orange-500 text-white">
+              <Boxes className="size-4" />
+            </span>
+            <span className="text-lg font-bold tracking-tight text-white lg:text-xl">
+              R&amp;A MediaWorks
+            </span>
           </Link>
 
-          <nav className="hidden items-center gap-10 lg:flex">
-            {NAV_LINKS.map((link) => {
-              const active = pathname === link.href;
+          <nav className="hidden items-center gap-9 lg:flex">
+            {NAV_ITEMS.map((item) => {
+              const active = "children" in item
+                ? item.children.some((c) => c.href === pathname)
+                : pathname === item.href;
+
+              if ("children" in item) {
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => setPagesOpen(true)}
+                    onMouseLeave={() => setPagesOpen(false)}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setPagesOpen((v) => !v)}
+                      aria-expanded={pagesOpen}
+                      className={cn(
+                        "flex items-center gap-1 text-sm font-medium tracking-wide transition-colors",
+                        active ? "text-brand-orange-400" : "text-white/80 hover:text-white"
+                      )}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={cn(
+                          "size-3.5 transition-transform duration-300",
+                          pagesOpen && "rotate-180"
+                        )}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {pagesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute left-0 top-full pt-3"
+                        >
+                          <div className="min-w-40 overflow-hidden rounded-xl bg-white py-2 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.25)]">
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                className="block px-4 py-2.5 text-sm font-medium text-brand-navy-900 transition-colors hover:bg-brand-orange-500/10 hover:text-brand-orange-500"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  data-active={active}
-                  className="link-underline pb-1 text-sm font-medium tracking-wide text-navy-900/80 transition-colors hover:text-navy-950"
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-medium tracking-wide transition-colors",
+                    active ? "text-brand-orange-400" : "text-white/80 hover:text-white"
+                  )}
                 >
-                  {link.label}
+                  {item.label}
                 </Link>
               );
             })}
           </nav>
 
           <div className="hidden lg:block">
-            <Button href="/contact" size="sm" withArrow>
-              Start a Project
-            </Button>
+            <Link
+              href="/contact"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-brand-orange-500 px-6 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-orange-600"
+            >
+              Contact Us
+            </Link>
           </div>
 
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="flex size-11 items-center justify-center rounded-full text-navy-950 lg:hidden"
+            className="flex size-11 items-center justify-center rounded-full text-white lg:hidden"
           >
             {open ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
@@ -93,10 +166,12 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden bg-ivory lg:hidden"
+            className="overflow-hidden bg-brand-navy-900 lg:hidden"
           >
             <Container className="flex flex-col gap-1 pb-10 pt-2">
-              {NAV_LINKS.map((link, i) => (
+              {NAV_ITEMS.flatMap((item) =>
+                "children" in item ? item.children : [item]
+              ).map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, y: 12 }}
@@ -105,18 +180,22 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="flex items-center justify-between border-b border-navy-900/10 py-4 font-display text-2xl text-navy-950"
+                    className={cn(
+                      "flex items-center justify-between border-b border-white/10 py-4 text-lg font-semibold",
+                      pathname === link.href ? "text-brand-orange-400" : "text-white"
+                    )}
                   >
                     {link.label}
-                    <ArrowUpRight className="size-5 text-gold-600" />
                   </Link>
                 </motion.div>
               ))}
               <div className="pt-6">
-                <Button href="/contact" className="w-full" withArrow>
-                  Start a Project
-                </Button>
-                <p className="mt-6 text-sm text-mist-700">{SITE.email}</p>
+                <Link
+                  href="/contact"
+                  className="inline-flex h-12 w-full items-center justify-center rounded-full bg-brand-orange-500 px-6 text-sm font-semibold text-white"
+                >
+                  Contact Us
+                </Link>
               </div>
             </Container>
           </motion.div>

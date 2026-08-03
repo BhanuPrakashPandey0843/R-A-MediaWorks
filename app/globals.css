@@ -24,6 +24,14 @@
   --color-gold-300: #e8d6ab;
   --color-gold-200: #f3e9d2;
 
+  /* DigBiz-style navbar & hero palette (deep navy + orange accent) */
+  --color-brand-navy-900: #1c1c6c;
+  --color-brand-navy-800: #232378;
+  --color-brand-navy-700: #2c2c86;
+  --color-brand-orange-600: #d9600f;
+  --color-brand-orange-500: #f5701d;
+  --color-brand-orange-400: #ff9152;
+
   /* Neutrals */
   --color-ivory: #faf8f3;
   --color-ink: #0b1220;

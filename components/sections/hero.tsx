@@ -1,86 +1,98 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowDown } from "lucide-react";
+import { Play } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/animations/magnetic";
-import { TextReveal } from "@/components/animations/reveal";
+import heroImage from "@/assets/home_hero.png";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-ivory pt-28 lg:pt-24">
+    <section className="relative overflow-hidden bg-brand-navy-900 pb-20 pt-32 lg:pb-28 lg:pt-40">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 82% 18%, rgba(198,161,91,0.16), transparent 45%), radial-gradient(circle at 10% 85%, rgba(10,20,40,0.06), transparent 45%)",
+            "radial-gradient(circle at 85% 20%, rgba(245,112,29,0.14), transparent 45%), radial-gradient(circle at 5% 90%, rgba(255,255,255,0.05), transparent 40%)",
         }}
       />
 
-      <Container className="relative">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-gold-600"
-        >
-          <span className="h-px w-10 bg-current" />
-          Boutique Communications &amp; Branding Studio
-        </motion.p>
+      <Container className="relative grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-brand-orange-400"
+          >
+            Digital Agency
+          </motion.p>
 
-        <h1 className="max-w-5xl font-display text-[13vw] font-medium leading-[0.98] tracking-tight text-navy-950 sm:text-[8.5vw] lg:text-[6.4vw]">
-          <TextReveal>Brands people</TextReveal>
-          <TextReveal delay={0.1}>
-            <span className="italic text-gold-600">remember</span>, on purpose.
-          </TextReveal>
-        </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-xl text-4xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-[3.4rem]"
+          >
+            We Build Digital{" "}
+            <span className="text-brand-orange-500">Solutions</span> That
+            Scale
+          </motion.h1>
 
-        <div className="mt-10 flex flex-col items-start gap-10 lg:mt-14 lg:flex-row lg:items-end lg:justify-between">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-md text-base leading-relaxed text-mist-700 sm:text-lg"
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 max-w-md text-base leading-relaxed text-white/60 sm:text-lg"
           >
-            We build brand identities, communications strategy, and media
-            storytelling for organizations that take how they&apos;re seen
-            seriously.
+            We help businesses grow with innovative strategies and
+            data-driven digital solutions.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap items-center gap-4"
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-10 flex flex-wrap items-center gap-8"
           >
             <Magnetic>
-              <Button href="/contact" size="lg" withArrow>
-                Start a Project
-              </Button>
+              <Link
+                href="/contact"
+                className="inline-flex h-14 items-center justify-center rounded-full bg-brand-orange-500 px-8 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-orange-600"
+              >
+                Get Started
+              </Link>
             </Magnetic>
-            <Button href="/our-work" variant="outline" size="lg">
-              View Our Work
-            </Button>
+
+            <Link
+              href="/our-work"
+              className="group inline-flex items-center gap-3 text-sm font-semibold text-white"
+            >
+              Learn More
+              <span className="flex size-9 items-center justify-center rounded-full border border-white/30 transition-colors duration-300 group-hover:border-brand-orange-500 group-hover:bg-brand-orange-500">
+                <Play className="size-3.5 translate-x-0.5 fill-white text-white" />
+              </span>
+            </Link>
           </motion.div>
         </div>
-      </Container>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute inset-x-0 bottom-8 flex flex-col items-center gap-2 text-mist-500"
-      >
-        <span className="text-[10px] font-medium uppercase tracking-[0.3em]">Scroll</span>
-        <motion.span
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto w-full max-w-lg lg:max-w-none"
         >
-          <ArrowDown className="size-4" />
-        </motion.span>
-      </motion.div>
+          <Image
+            src={heroImage}
+            alt="Illustration of a digital agency team analyzing data and building digital products"
+            priority
+            className="h-auto w-full"
+          />
+        </motion.div>
+      </Container>
     </section>
   );
 }
