@@ -16,6 +16,8 @@ import { Container } from "@/components/ui/container";
 import { SERVICES } from "@/constants/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const GOLD_GRADIENT =
+  "linear-gradient(135deg,var(--color-brand-gold-400),var(--color-brand-gold-600))";
 
 const ICONS = [
   Share2,
@@ -53,19 +55,27 @@ function ServiceCard({
       }}
       whileHover={{
         y: -8,
-        boxShadow: "0 24px 50px -20px rgba(198,161,91,0.4)",
+        boxShadow: "0 28px 55px -22px rgba(198,161,91,0.45)",
       }}
-      className="group rounded-2xl border border-mist-300/70 bg-white p-7 shadow-[0_16px_40px_-28px_rgba(11,18,32,0.35)] transition-colors duration-300 hover:border-brand-gold-400/60"
+      className="group relative overflow-hidden rounded-2xl border border-mist-300/70 bg-white p-7 shadow-[0_16px_40px_-28px_rgba(11,18,32,0.35)] transition-colors duration-300 hover:border-brand-gold-400/60"
     >
+      {/* Gold accent bar — reveals on hover for a refined finishing touch */}
+      <span
+        aria-hidden="true"
+        style={{ backgroundImage: GOLD_GRADIENT }}
+        className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100"
+      />
+
       <motion.span
         whileHover={{ scale: 1.08, rotate: -4 }}
         transition={{ duration: 0.3, ease: EASE }}
-        className="flex size-12 items-center justify-center rounded-xl bg-brand-gold-500 text-brand-navy-950"
+        style={{ backgroundImage: GOLD_GRADIENT }}
+        className="flex size-12 items-center justify-center rounded-xl text-brand-navy-950 shadow-[0_10px_24px_-10px_rgba(198,161,91,0.6)]"
       >
         <Icon className="size-5" />
       </motion.span>
 
-      <h3 className="mt-5 text-base font-bold tracking-tight text-ink">
+      <h3 className="font-display mt-5 text-lg font-bold tracking-tight text-ink">
         {title}
       </h3>
 
@@ -94,11 +104,15 @@ export function Services() {
           transition={{ duration: 0.7, ease: EASE }}
           className="mx-auto max-w-2xl text-center"
         >
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-600">
-            Our Services
-          </p>
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span className="h-px w-8 bg-brand-gold-500" />
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-600">
+              Our Services
+            </p>
+            <span className="h-px w-8 bg-brand-gold-500" />
+          </div>
 
-          <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-ink sm:text-4xl">
+          <h2 className="font-display text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl">
             Ready To Tell Your Story?{" "}
             <span className="text-brand-gold-600">Trust The Experts</span>
           </h2>

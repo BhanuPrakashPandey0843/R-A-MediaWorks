@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 import { NAV_LINKS, CONSULTATION_LINK } from "@/constants/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const GOLD_GRADIENT =
+  "linear-gradient(135deg,var(--color-brand-gold-400),var(--color-brand-gold-600))";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,8 +41,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 bg-brand-navy-900 transition-shadow duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        scrolled || open ? "shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35)]" : ""
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        scrolled || open
+          ? "border-white/10 bg-brand-navy-900/85 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+          : "border-transparent bg-brand-navy-900/60 backdrop-blur-md"
       )}
     >
       <Container>
@@ -49,11 +53,12 @@ export function Navbar() {
             <motion.span
               whileHover={{ scale: 1.06, rotate: -3 }}
               transition={{ duration: 0.3, ease: EASE }}
-              className="flex size-8 items-center justify-center rounded-md bg-brand-gold-500 text-brand-navy-950"
+              style={{ backgroundImage: GOLD_GRADIENT }}
+              className="flex size-8 items-center justify-center rounded-md text-brand-navy-950 shadow-[0_4px_14px_-4px_rgba(198,161,91,0.7)] ring-1 ring-white/20"
             >
               <Boxes className="size-4" />
             </motion.span>
-            <span className="text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-brand-gold-300 lg:text-xl">
+            <span className="font-display text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-brand-gold-300 lg:text-xl">
               R&amp;A MediaWorks
             </span>
           </Link>
@@ -97,7 +102,8 @@ export function Navbar() {
                 href={CONSULTATION_LINK}
                 target={CONSULTATION_LINK.startsWith("http") ? "_blank" : undefined}
                 rel={CONSULTATION_LINK.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="inline-flex h-11 items-center justify-center rounded-full bg-brand-gold-500 px-6 text-sm font-semibold text-brand-navy-950 transition-colors duration-300 hover:bg-brand-gold-400"
+                style={{ backgroundImage: GOLD_GRADIENT }}
+                className="inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-semibold text-brand-navy-950 ring-1 ring-white/25 transition-[filter] duration-300 hover:brightness-110"
               >
                 Book a Consultation
               </Link>
@@ -134,7 +140,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: EASE }}
-            className="overflow-hidden bg-brand-navy-900 lg:hidden"
+            className="overflow-hidden border-t border-white/10 bg-brand-navy-900/95 backdrop-blur-xl lg:hidden"
           >
             <Container className="flex flex-col gap-1 pb-10 pt-2">
               {NAV_LINKS.map((link, i) => (
@@ -162,7 +168,8 @@ export function Navbar() {
                   href={CONSULTATION_LINK}
                   target={CONSULTATION_LINK.startsWith("http") ? "_blank" : undefined}
                   rel={CONSULTATION_LINK.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="inline-flex h-12 w-full items-center justify-center rounded-full bg-brand-gold-500 px-6 text-sm font-semibold text-brand-navy-950 transition-colors duration-300 hover:bg-brand-gold-400"
+                  style={{ backgroundImage: GOLD_GRADIENT }}
+                  className="inline-flex h-12 w-full items-center justify-center rounded-full px-6 text-sm font-semibold text-brand-navy-950 ring-1 ring-white/25"
                 >
                   Book a Consultation
                 </Link>

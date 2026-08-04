@@ -20,10 +20,13 @@ export function AboutShowcase() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: EASE }}
         >
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-600">
-            About Us
-          </p>
-          <h2 className="max-w-lg text-3xl font-extrabold leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-px w-8 bg-brand-gold-500" />
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-600">
+              About Us
+            </p>
+          </div>
+          <h2 className="font-display max-w-lg text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
             Every brand is a story.{" "}
             <span className="text-brand-gold-600">
               Most just haven&apos;t found their editor.
@@ -50,7 +53,7 @@ export function AboutShowcase() {
               {APPROACH.map((word) => (
                 <span
                   key={word}
-                  className="text-xl font-extrabold tracking-tight text-ink sm:text-2xl"
+                  className="font-display text-xl font-bold tracking-tight text-ink sm:text-2xl"
                 >
                   {word}
                 </span>

@@ -13,17 +13,19 @@ import { Container } from "@/components/ui/container";
 import { SITE, SERVICES as SITE_SERVICES } from "@/constants/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const GOLD_GRADIENT =
+  "linear-gradient(135deg,var(--color-brand-gold-400),var(--color-brand-gold-600))";
 
 const QUICK_LINKS = [
-  { label: "About", href: "/#about" },
-  { label: "Services", href: "/#services" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const FOOTER_SERVICES = SITE_SERVICES.slice(0, 4).map((service) => ({
   label: service.title,
-  href: "/#services",
+  href: "/services",
 }));
 
 // Social links are left out until the client supplies real handles —
@@ -78,6 +80,7 @@ function FooterLinkList({
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-brand-navy-950">
+      <div className="rule-gold absolute inset-x-0 top-0 opacity-70" />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -98,10 +101,13 @@ export function Footer() {
           {/* Brand column */}
           <motion.div variants={fadeUp} transition={{ duration: 0.6, ease: EASE }}>
             <Link href="/" className="group flex items-center gap-2.5">
-              <span className="flex size-8 items-center justify-center rounded-md bg-brand-gold-500 text-brand-navy-950 transition-transform duration-300 group-hover:scale-105">
+              <span
+                style={{ backgroundImage: GOLD_GRADIENT }}
+                className="flex size-8 items-center justify-center rounded-md text-brand-navy-950 shadow-[0_4px_14px_-4px_rgba(198,161,91,0.6)] ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105"
+              >
                 <Boxes className="size-4" />
               </span>
-              <span className="text-lg font-bold tracking-tight text-white">
+              <span className="font-display text-lg font-bold tracking-tight text-white">
                 R&amp;A MediaWorks
               </span>
             </Link>
@@ -169,11 +175,12 @@ export function Footer() {
             aria-label="Back to top"
             whileHover={{
               y: -3,
-              boxShadow: "0 14px 32px -10px rgba(198,161,91,0.6)",
+              boxShadow: "0 16px 36px -10px rgba(198,161,91,0.7)",
             }}
             whileTap={{ scale: 0.92 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            className="flex size-10 items-center justify-center rounded-full bg-brand-gold-500 text-brand-navy-950 shadow-[0_8px_20px_-6px_rgba(198,161,91,0.55)] transition-colors duration-300 hover:bg-brand-gold-400"
+            style={{ backgroundImage: GOLD_GRADIENT }}
+            className="flex size-10 items-center justify-center rounded-full text-brand-navy-950 shadow-[0_8px_20px_-6px_rgba(198,161,91,0.55)] ring-1 ring-white/20 transition-[filter] duration-300 hover:brightness-110"
           >
             <ArrowUp className="size-4" />
           </motion.button>

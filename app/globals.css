@@ -137,6 +137,28 @@ body {
   box-shadow: 0 20px 45px -20px var(--glow-gold);
 }
 
+/* Faint dot-grid texture for dark (navy) sections — adds tactile depth
+   without competing with content. Kept extremely subtle on purpose. */
+.bg-dot-grid {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.14) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* Hairline gold gradient rule — used as a quiet section-transition accent
+   and above the footer's bottom bar. */
+.rule-gold {
+  height: 1px;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-brand-gold-400),
+    transparent
+  );
+}
+
 /* Infinite marquee track used by the Industries strip */
 @keyframes marquee-scroll {
   from {

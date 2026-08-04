@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { Magnetic } from "@/components/animations/magnetic";
 import { CONSULTATION_LINK } from "@/constants/site";
-import heroImage from "@/assets/home_hero.png";
+import contactHeroImage from "@/assets/contact_hero.png";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const GOLD_GRADIENT =
@@ -15,12 +15,20 @@ const GOLD_GRADIENT =
 const GOLD_TEXT_GRADIENT =
   "linear-gradient(135deg,var(--color-gold-300),var(--color-brand-gold-400) 55%,var(--color-brand-gold-600))";
 
-export function Hero() {
+/**
+ * Contact Us hero — the Home Hero's companion component. Structure,
+ * spacing, animation timing and visual language are intentionally
+ * identical to `Hero`; only the copy, CTA label and image are swapped for
+ * the Contact context. A couple of extra ambient details (a slow
+ * counter-drifting glow ring and a gentle image tilt-on-hover) are layered
+ * on top for a touch more depth, without altering the core look.
+ */
+export function ContactHero() {
   const reduceMotion = useReducedMotion();
 
   return (
     <section
-      id="home"
+      id="contact-hero"
       className="relative overflow-hidden bg-brand-navy-900 pb-20 pt-32 lg:pb-28 lg:pt-40"
     >
       {/* Base glow */}
@@ -42,6 +50,29 @@ export function Hero() {
         }}
       />
 
+      {/* Extra depth: a slow, independently-drifting gold ring behind the
+          copy column — quiet enough to read as ambience, not decoration. */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-24 top-24 hidden size-[420px] rounded-full lg:block"
+        style={{
+          border: "1px solid rgba(198,161,91,0.14)",
+        }}
+        animate={
+          reduceMotion
+            ? undefined
+            : { rotate: 360, scale: [1, 1.03, 1] }
+        }
+        transition={
+          reduceMotion
+            ? undefined
+            : {
+                rotate: { duration: 60, repeat: Infinity, ease: "linear" },
+                scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+              }
+        }
+      />
+
       <Container className="relative grid items-center gap-16 lg:grid-cols-[1fr_1.08fr] lg:gap-14">
         <div>
           <motion.div
@@ -52,7 +83,7 @@ export function Hero() {
           >
             <span className="h-px w-8 bg-brand-gold-400" />
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-400">
-              Global Experience Local Soul
+              Let&apos;s Start a Conversation
             </p>
           </motion.div>
 
@@ -62,12 +93,12 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
             className="font-display max-w-xl text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[3.75rem]"
           >
-            R&amp;A{" "}
+            Get in Touch with{" "}
             <span
               style={{ backgroundImage: GOLD_TEXT_GRADIENT }}
               className="bg-clip-text text-transparent"
             >
-              MediaWorks
+              R&amp;A MediaWorks
             </span>
           </motion.h1>
 
@@ -77,8 +108,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
             className="mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg"
           >
-            We are a boutique Communications &amp; Branding Studio, with home
-            in Southwestern Ontario.
+            Whether you&apos;re a startup finding your first voice or an
+            established brand ready for its next chapter, we&apos;d love to
+            hear what you&apos;re building.
           </motion.p>
 
           <motion.p
@@ -87,10 +119,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
             className="mt-5 max-w-md text-base leading-relaxed text-white/60 sm:text-lg"
           >
-            The difference between being seen and being scrolled past is a
-            story told well. We help small and mid-size businesses find
-            their voice and build a presence that earns attention, and keeps
-            it.
+            Tell us about your goals in branding, marketing, content
+            creation, or digital growth, and let&apos;s map out what earning
+            attention — and keeping it — looks like for you.
           </motion.p>
 
           <motion.div
@@ -116,7 +147,7 @@ export function Hero() {
                   style={{ backgroundImage: GOLD_GRADIENT }}
                   className="inline-flex h-14 items-center justify-center gap-2 rounded-full px-8 text-sm font-semibold text-brand-navy-950 shadow-[0_14px_36px_-12px_rgba(198,161,91,0.75)] ring-1 ring-white/25 transition-[filter] duration-300 hover:brightness-110"
                 >
-                  Book a Consultation
+                  Schedule a Consultation
                   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </motion.div>
@@ -128,7 +159,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.94, clipPath: "inset(0 8% 0 8% round 24px)" }}
           animate={{ opacity: 1, scale: 1, clipPath: "inset(0 0% 0 0% round 24px)" }}
           transition={{ duration: 1, delay: 0.2, ease: EASE }}
-          className="relative mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-none lg:-mr-4 xl:-mr-10"
+          className="group relative mx-auto w-full max-w-xl [perspective:1200px] sm:max-w-2xl lg:max-w-none lg:-mr-4 xl:-mr-10"
         >
           {/* Soft gold glow anchoring the hero image for extra visual weight */}
           <div
@@ -143,10 +174,16 @@ export function Hero() {
                 ? undefined
                 : { duration: 6, repeat: Infinity, ease: "easeInOut" }
             }
+            whileHover={
+              reduceMotion
+                ? undefined
+                : { rotateX: 2, rotateY: -3, transition: { duration: 0.6, ease: EASE } }
+            }
+            style={{ transformStyle: "preserve-3d" }}
           >
             <Image
-              src={heroImage}
-              alt="R&A MediaWorks — Communications & Branding Studio"
+              src={contactHeroImage}
+              alt="R&A MediaWorks — Get in touch with our Communications & Branding Studio"
               preload
               sizes="(min-width: 1024px) 48vw, (min-width: 640px) 80vw, 92vw"
               className="h-auto w-full drop-shadow-[0_30px_60px_rgba(5,11,22,0.45)]"
@@ -155,7 +192,7 @@ export function Hero() {
         </motion.div>
       </Container>
 
-      {/* Quiet transition into the next (ivory) section */}
+      {/* Quiet transition into the next section */}
       <div className="rule-gold absolute inset-x-0 bottom-0 opacity-60" />
     </section>
   );

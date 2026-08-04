@@ -6,8 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import { Magnetic } from "@/components/animations/magnetic";
-import { CONSULTATION_LINK } from "@/constants/site";
-import heroImage from "@/assets/home_hero.png";
+import aboutHeroImage from "@/assets/about_hero.png";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const GOLD_GRADIENT =
@@ -15,15 +14,18 @@ const GOLD_GRADIENT =
 const GOLD_TEXT_GRADIENT =
   "linear-gradient(135deg,var(--color-gold-300),var(--color-brand-gold-400) 55%,var(--color-brand-gold-600))";
 
-export function Hero() {
+/**
+ * About page hero — sibling of the Home Hero. Same structure, spacing,
+ * animation language, and visual weight; only the copy and image change.
+ */
+export function AboutHero() {
   const reduceMotion = useReducedMotion();
 
   return (
     <section
-      id="home"
+      id="about-hero"
       className="relative overflow-hidden bg-brand-navy-900 pb-20 pt-32 lg:pb-28 lg:pt-40"
     >
-      {/* Base glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -32,7 +34,6 @@ export function Hero() {
             "radial-gradient(circle at 85% 20%, rgba(198,161,91,0.16), transparent 45%), radial-gradient(circle at 5% 90%, rgba(255,255,255,0.05), transparent 40%)",
         }}
       />
-      {/* Fine tactile texture, fades toward the bottom so it never fights the copy */}
       <div
         aria-hidden="true"
         className="bg-dot-grid pointer-events-none absolute inset-0 opacity-40"
@@ -52,7 +53,7 @@ export function Hero() {
           >
             <span className="h-px w-8 bg-brand-gold-400" />
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-400">
-              Global Experience Local Soul
+              Who We Are
             </p>
           </motion.div>
 
@@ -62,12 +63,12 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
             className="font-display max-w-xl text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[3.75rem]"
           >
-            R&amp;A{" "}
+            Every Brand Has a Story.{" "}
             <span
               style={{ backgroundImage: GOLD_TEXT_GRADIENT }}
               className="bg-clip-text text-transparent"
             >
-              MediaWorks
+              We Help Tell Yours.
             </span>
           </motion.h1>
 
@@ -77,8 +78,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
             className="mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg"
           >
-            We are a boutique Communications &amp; Branding Studio, with home
-            in Southwestern Ontario.
+            We&apos;re a boutique Communications &amp; Branding Studio built
+            on relationships, not transactions — the kind of partner who
+            sticks around long after the first campaign ships.
           </motion.p>
 
           <motion.p
@@ -87,10 +89,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
             className="mt-5 max-w-md text-base leading-relaxed text-white/60 sm:text-lg"
           >
-            The difference between being seen and being scrolled past is a
-            story told well. We help small and mid-size businesses find
-            their voice and build a presence that earns attention, and keeps
-            it.
+            Behind every deck and headline is a small team that treats your
+            business like our own — craftsmanship, candor, and creative
+            strategy grounded in newsroom discipline.
           </motion.p>
 
           <motion.div
@@ -110,13 +111,11 @@ export function Hero() {
                 className="group inline-block rounded-full"
               >
                 <Link
-                  href={CONSULTATION_LINK}
-                  target={CONSULTATION_LINK.startsWith("http") ? "_blank" : undefined}
-                  rel={CONSULTATION_LINK.startsWith("http") ? "noopener noreferrer" : undefined}
+                  href="#about"
                   style={{ backgroundImage: GOLD_GRADIENT }}
                   className="inline-flex h-14 items-center justify-center gap-2 rounded-full px-8 text-sm font-semibold text-brand-navy-950 shadow-[0_14px_36px_-12px_rgba(198,161,91,0.75)] ring-1 ring-white/25 transition-[filter] duration-300 hover:brightness-110"
                 >
-                  Book a Consultation
+                  Our Story
                   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </motion.div>
@@ -130,7 +129,6 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.2, ease: EASE }}
           className="relative mx-auto w-full max-w-xl sm:max-w-2xl lg:max-w-none lg:-mr-4 xl:-mr-10"
         >
-          {/* Soft gold glow anchoring the hero image for extra visual weight */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -inset-10 -z-10  blur-3xl"
@@ -145,8 +143,8 @@ export function Hero() {
             }
           >
             <Image
-              src={heroImage}
-              alt="R&A MediaWorks — Communications & Branding Studio"
+              src={aboutHeroImage}
+              alt="The people and craft behind R&A MediaWorks"
               preload
               sizes="(min-width: 1024px) 48vw, (min-width: 640px) 80vw, 92vw"
               className="h-auto w-full drop-shadow-[0_30px_60px_rgba(5,11,22,0.45)]"
@@ -155,7 +153,6 @@ export function Hero() {
         </motion.div>
       </Container>
 
-      {/* Quiet transition into the next (ivory) section */}
       <div className="rule-gold absolute inset-x-0 bottom-0 opacity-60" />
     </section>
   );

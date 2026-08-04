@@ -8,6 +8,8 @@ import { Magnetic } from "@/components/animations/magnetic";
 import { SITE, CONSULTATION_LINK } from "@/constants/site";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const GOLD_GRADIENT =
+  "linear-gradient(135deg,var(--color-brand-gold-400),var(--color-brand-gold-600))";
 
 export function ContactCta() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
@@ -29,6 +31,16 @@ export function ContactCta() {
             "radial-gradient(circle at 90% 10%, rgba(198,161,91,0.16), transparent 45%), radial-gradient(circle at 0% 100%, rgba(255,255,255,0.05), transparent 40%)",
         }}
       />
+      <div
+        aria-hidden="true"
+        className="bg-dot-grid pointer-events-none absolute inset-0 opacity-30"
+        style={{
+          maskImage: "radial-gradient(circle at 30% 20%, black, transparent 65%)",
+          WebkitMaskImage:
+            "radial-gradient(circle at 30% 20%, black, transparent 65%)",
+        }}
+      />
+      <div className="rule-gold absolute inset-x-0 top-0 opacity-60" />
 
       <Container className="relative grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
         {/* Left: heading + contact details + CTA */}
@@ -38,10 +50,13 @@ export function ContactCta() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: EASE }}
         >
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-400">
-            Get In Touch
-          </p>
-          <h2 className="max-w-lg text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-px w-8 bg-brand-gold-400" />
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-400">
+              Get In Touch
+            </p>
+          </div>
+          <h2 className="font-display max-w-lg text-3xl font-bold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
             Let&apos;s Write Your{" "}
             <span className="text-brand-gold-400">Next Chapter</span>
           </h2>
@@ -83,7 +98,7 @@ export function ContactCta() {
             <motion.div
               whileHover={{
                 scale: 1.035,
-                boxShadow: "0 18px 40px -12px rgba(198,161,91,0.55)",
+                boxShadow: "0 20px 45px -14px rgba(198,161,91,0.65)",
               }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.35, ease: EASE }}
@@ -93,7 +108,8 @@ export function ContactCta() {
                 href={CONSULTATION_LINK}
                 target={CONSULTATION_LINK.startsWith("http") ? "_blank" : undefined}
                 rel={CONSULTATION_LINK.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="inline-flex h-14 items-center justify-center rounded-full bg-brand-gold-500 px-8 text-sm font-semibold text-brand-navy-950 shadow-[0_10px_30px_-12px_rgba(198,161,91,0.7)] transition-colors duration-300 hover:bg-brand-gold-400"
+                style={{ backgroundImage: GOLD_GRADIENT }}
+                className="inline-flex h-14 items-center justify-center rounded-full px-8 text-sm font-semibold text-brand-navy-950 shadow-[0_14px_36px_-12px_rgba(198,161,91,0.75)] ring-1 ring-white/25 transition-[filter] duration-300 hover:brightness-110"
               >
                 Book a Consultation
               </a>
@@ -108,9 +124,15 @@ export function ContactCta() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
           whileHover={{ y: -4 }}
-          className="rounded-2xl bg-white p-7 shadow-[0_30px_60px_-25px_rgba(5,11,22,0.55)] transition-shadow duration-500 hover:shadow-[0_36px_70px_-24px_rgba(198,161,91,0.35)] sm:p-9"
+          className="relative overflow-hidden rounded-2xl bg-white p-7 shadow-[0_30px_60px_-25px_rgba(5,11,22,0.55)] transition-shadow duration-500 hover:shadow-[0_36px_70px_-24px_rgba(198,161,91,0.35)] sm:p-9"
         >
-          <h3 className="text-lg font-bold tracking-tight text-ink">
+          <span
+            aria-hidden="true"
+            style={{ backgroundImage: GOLD_GRADIENT }}
+            className="absolute inset-x-0 top-0 h-[3px]"
+          />
+
+          <h3 className="font-display text-xl font-bold tracking-tight text-ink">
             Send Us A Message
           </h3>
 
@@ -164,7 +186,8 @@ export function ContactCta() {
               transition={{ duration: 0.25, ease: EASE }}
               type="submit"
               disabled={status !== "idle"}
-              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-brand-gold-500 px-6 text-sm font-semibold text-brand-navy-950 transition-colors duration-300 hover:bg-brand-gold-400 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+              style={status === "idle" ? { backgroundImage: GOLD_GRADIENT } : undefined}
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-brand-gold-500 px-6 text-sm font-semibold text-brand-navy-950 transition-[filter] duration-300 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
             >
               {status === "sent" ? (
                 "Message Sent"

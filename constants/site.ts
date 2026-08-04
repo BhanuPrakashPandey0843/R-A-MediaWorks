@@ -36,16 +36,16 @@ const mailtoFallback = `mailto:${SITE.email}?subject=${encodeURIComponent(
 
 export const CONSULTATION_LINK = calendlyUrl || mailtoFallback;
 
-// Primary nav. About / Services / Contact are anchors on the homepage
-// single-page scroll; Blog is its own routed page (for SEO indexing of
-// individual posts). When rendered on a page other than "/", the anchors
-// resolve to "/#about" etc. so clicking them navigates home and scrolls.
+// Primary nav. Every top-level page now has its own route — Home is the
+// pure hero landing page, and About / Services / Blog / Contact each carry
+// their own hero plus full page content (kept in sync with the routes
+// below so nothing needs to change if a page's content grows).
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
-  { label: "Services", href: "/#services" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export type Service = {
