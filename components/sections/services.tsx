@@ -15,6 +15,8 @@ import {
 import { Container } from "@/components/ui/container";
 import { SERVICES } from "@/constants/site";
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 const ICONS = [
   Share2,
   Globe,
@@ -40,20 +42,28 @@ function ServiceCard({
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
       exit={{ opacity: 0, y: 24 }}
       transition={{
         duration: 0.55,
-        delay: index * 0.08,
-        ease: [0.22, 1, 0.36, 1],
+        delay: (index % 4) * 0.08,
+        ease: EASE,
       }}
-      whileHover={{ y: -6 }}
-      className="group rounded-2xl border border-mist-300/70 bg-white p-7 shadow-[0_16px_40px_-28px_rgba(11,18,32,0.35)] transition-colors duration-300 hover:border-brand-orange-400/60"
+      whileHover={{
+        y: -8,
+        boxShadow: "0 24px 50px -20px rgba(198,161,91,0.4)",
+      }}
+      className="group rounded-2xl border border-mist-300/70 bg-white p-7 shadow-[0_16px_40px_-28px_rgba(11,18,32,0.35)] transition-colors duration-300 hover:border-brand-gold-400/60"
     >
-      <span className="flex size-12 items-center justify-center rounded-xl bg-brand-orange-500 text-white transition-transform duration-300 group-hover:scale-105">
+      <motion.span
+        whileHover={{ scale: 1.08, rotate: -4 }}
+        transition={{ duration: 0.3, ease: EASE }}
+        className="flex size-12 items-center justify-center rounded-xl bg-brand-gold-500 text-brand-navy-950"
+      >
         <Icon className="size-5" />
-      </span>
+      </motion.span>
 
       <h3 className="mt-5 text-base font-bold tracking-tight text-ink">
         {title}
@@ -69,9 +79,7 @@ function ServiceCard({
 export function Services() {
   const [showAll, setShowAll] = useState(false);
 
-  const visibleServices = showAll
-    ? SERVICES
-    : SERVICES.slice(0, 4);
+  const visibleServices = showAll ? SERVICES : SERVICES.slice(0, 4);
 
   return (
     <section
@@ -79,18 +87,22 @@ export function Services() {
       className="relative overflow-hidden bg-ivory py-20 lg:py-28 scroll-mt-24"
     >
       <Container className="relative">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-brand-orange-600">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-600">
             Our Services
           </p>
 
           <h2 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-ink sm:text-4xl">
             Ready To Tell Your Story?{" "}
-            <span className="text-brand-orange-500">
-              Trust The Experts
-            </span>
+            <span className="text-brand-gold-600">Trust The Experts</span>
           </h2>
-        </div>
+        </motion.div>
 
         <motion.div
           layout
@@ -112,10 +124,14 @@ export function Services() {
         {SERVICES.length > 4 && (
           <div className="mt-12 flex justify-center">
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 16px 36px -16px rgba(198,161,91,0.5)",
+              }}
               whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.3, ease: EASE }}
               onClick={() => setShowAll(!showAll)}
-              className="flex h-14 w-44 items-center justify-center rounded-xl border-2 border-brand-orange-500 bg-white font-semibold text-brand-orange-500 transition-all duration-300 hover:bg-brand-orange-500 hover:text-white"
+              className="flex h-14 w-44 items-center justify-center rounded-xl border-2 border-brand-gold-500 bg-white font-semibold text-brand-gold-600 transition-colors duration-300 hover:bg-brand-gold-500 hover:text-brand-navy-950"
             >
               {showAll ? "View Less" : "View More"}
             </motion.button>

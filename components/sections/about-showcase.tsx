@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import phoneFrame from "@/assets/MiddlePhone.png";
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 const APPROACH = ["Minimal.", "Precise.", "Story-led."];
 
 export function AboutShowcase() {
@@ -16,14 +18,14 @@ export function AboutShowcase() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
         >
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-brand-orange-600">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-600">
             About Us
           </p>
           <h2 className="max-w-lg text-3xl font-extrabold leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
             Every brand is a story.{" "}
-            <span className="text-brand-orange-500">
+            <span className="text-brand-gold-600">
               Most just haven&apos;t found their editor.
             </span>
           </h2>
@@ -33,10 +35,15 @@ export function AboutShowcase() {
             consequence that shapes a strong headline, applied to how your
             business speaks.
           </p>
-       
 
-          <div className="mt-10 border-t border-mist-300/70 pt-8">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-mist-600">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
+            className="mt-10 border-t border-mist-300/70 pt-8"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-mist-600">
               Our approach
             </p>
             <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
@@ -52,7 +59,7 @@ export function AboutShowcase() {
             <p className="mt-3 max-w-md text-sm leading-relaxed text-mist-700">
               Nothing said that doesn&apos;t need saying.
             </p>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Right: phone mockup with looping showcase video */}
@@ -60,9 +67,15 @@ export function AboutShowcase() {
           initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
           className="relative mx-auto w-full max-w-[220px] lg:max-w-[240px]"
         >
+          {/* Soft gold glow behind the phone frame for premium depth */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-6 -z-10 rounded-full bg-brand-gold-500/15 blur-2xl"
+          />
+
           <div className="relative aspect-[352/709] w-full">
             {/*
               Video sits in the transparent "screen" cutout of MiddlePhone.png.
@@ -83,6 +96,7 @@ export function AboutShowcase() {
               src={phoneFrame}
               alt="Mobile phone frame previewing R&A MediaWorks storytelling"
               fill
+              sizes="240px"
               className="pointer-events-none z-10 object-contain"
             />
           </div>

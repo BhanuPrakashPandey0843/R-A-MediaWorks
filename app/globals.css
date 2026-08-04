@@ -2,10 +2,11 @@
 
 /* ==========================================================================
    R&A MediaWorks — Design Tokens
-   Placeholder brand palette (Navy / Gold / Ivory). Swap the hex values below
-   once final brand colors are supplied — every component consuming these
-   tokens (via Tailwind utilities like bg-navy-900 or text-gold-500) will
-   update automatically since nothing is hardcoded downstream.
+   Navy / Gold / Ivory. The accent scale below (brand-gold-*) is the live
+   brand accent — used for buttons, icons, highlights, borders, and hover
+   states site-wide. Nothing downstream is hardcoded, so retuning these
+   three hex values is enough to retheme every component that consumes
+   them via Tailwind utilities (bg-brand-gold-500, text-brand-gold-400…).
    ========================================================================== */
 
 @theme {
@@ -24,14 +25,14 @@
   --color-gold-300: #e8d6ab;
   --color-gold-200: #f3e9d2;
 
-  /* DigBiz-style navbar & hero palette (deep navy + orange accent) */
+  /* Navbar / hero palette — deep navy + premium gold accent */
   --color-brand-navy-950: #12123f;
   --color-brand-navy-900: #1c1c6c;
   --color-brand-navy-800: #232378;
   --color-brand-navy-700: #2c2c86;
-  --color-brand-orange-600: #d9600f;
-  --color-brand-orange-500: #f5701d;
-  --color-brand-orange-400: #ff9152;
+  --color-brand-gold-600: #a6811f;
+  --color-brand-gold-500: #c6a15b;
+  --color-brand-gold-400: #d8bb7e;
 
   /* Neutrals */
   --color-ivory: #faf8f3;
@@ -62,6 +63,7 @@
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
   --max-width-content: 1440px;
+  --glow-gold: rgba(198, 161, 91, 0.45);
 }
 
 * {
@@ -125,6 +127,14 @@ body {
 .link-underline:hover,
 .link-underline[data-active="true"] {
   background-size: 100% 1px;
+}
+
+/* Soft gold glow used on hover for premium cards, buttons, and frames */
+.glow-gold-sm {
+  transition: box-shadow 0.4s var(--ease-premium);
+}
+.glow-gold-sm:hover {
+  box-shadow: 0 20px 45px -20px var(--glow-gold);
 }
 
 /* Infinite marquee track used by the Industries strip */
