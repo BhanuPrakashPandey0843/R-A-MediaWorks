@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -48,8 +49,8 @@ export function BlogShowcase() {
             <span className="text-brand-gold-600">Better Brands</span>
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-mist-700 sm:text-base">
-            Strategy notes and newsroom-disciplined thinking on branding,
-            PR, and the craft of being heard.
+           Editorial driven strategy and disciplined thinking on what
+communications actually is, and why it matters for brands at any stage.
           </p>
         </motion.div>
 
@@ -110,6 +111,16 @@ export function BlogShowcase() {
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-white/65 sm:text-base">
                   {featured.excerpt}
                 </p>
+
+                <div className="mt-8">
+                  <Link
+                    href={`/blog/${featured.slug}`}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+                  >
+                    Read full article
+                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </div>
             </motion.div>
           )}
@@ -123,8 +134,9 @@ export function BlogShowcase() {
             className="flex flex-col justify-between rounded-2xl border border-mist-300/70 bg-ivory/60 p-2 lg:col-span-5"
           >
             {listPosts.map((post, i) => (
-              <div
+              <Link
                 key={post.slug}
+                href={`/blog/${post.slug}`}
                 className={`group flex items-start gap-4 rounded-xl p-5 transition-colors duration-300 hover:bg-white ${
                   i !== listPosts.length - 1
                     ? "border-b border-mist-300/70"
@@ -146,7 +158,7 @@ export function BlogShowcase() {
                   </p>
                 </div>
                 <ArrowUpRight className="mt-1 size-4 shrink-0 text-mist-400 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-gold-600" />
-              </div>
+              </Link>
             ))}
           </motion.div>
         </div>

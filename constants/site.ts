@@ -41,8 +41,8 @@ export const CONSULTATION_LINK = calendlyUrl || mailtoFallback;
 // to it — there are no separate page routes for these anymore.
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
   { label: "Services", href: "/#services" },
+  { label: "About", href: "/#about" },
   { label: "Blog", href: "/#blog" },
   { label: "Contact", href: "/#contact" },
 ] as const;

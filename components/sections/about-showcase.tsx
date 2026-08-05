@@ -4,10 +4,12 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
 import phoneFrame from "@/assets/MiddlePhone.png";
+import mobInsideImage from "@/assets/mobinside.jpg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const APPROACH = ["Minimal.", "Precise.", "Story-led."];
+
+const APPROACH = ["Story-led.", "Audience-first.", "Connection-driven.", "Made-to-fit." ];
 
 export function AboutShowcase() {
   return (
@@ -34,8 +36,7 @@ export function AboutShowcase() {
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-mist-700">
             R&amp;A MediaWorks brings newsroom discipline to brand
-            storytelling — the same instinct for structure, clarity, and
-            consequence that shapes a strong headline, applied to how your
+            storytelling  applied to how your
             business speaks.
           </p>
 
@@ -81,20 +82,20 @@ export function AboutShowcase() {
 
           <div className="relative aspect-[352/709] w-full">
             {/*
-              Video sits in the transparent "screen" cutout of MiddlePhone.png.
-              Drop your clip at: public/videos/team-showcase.mp4
-              (create the /videos folder inside /public if it doesn't exist yet)
+              Image sits in the transparent "screen" cutout of MiddlePhone.png.
+              The mobile screen is now populated with mobinside.jpg.
             */}
-            <video
-              className="absolute left-[5.4%] top-[5.78%] h-[92.38%] w-[90.06%] rounded-[10%] object-cover"
-              src="/videos/team-showcase.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
+            <div className="absolute inset-x-[4.8%] top-[5.2%] bottom-[3.6%] overflow-hidden rounded-[10%]">
+              <Image
+                src={mobInsideImage}
+                alt="Inside mobile screen preview"
+                fill
+                className="object-cover"
+                sizes="240px"
+              />
+            </div>
 
-            {/* Phone frame overlay — sits above the video, transparent screen area */}
+            {/* Phone frame overlay — sits above the content inside the phone screen */}
             <Image
               src={phoneFrame}
               alt="Mobile phone frame previewing R&A MediaWorks storytelling"
