@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import {
-  Boxes,
   Phone,
   Mail,
   MapPin,
@@ -11,21 +11,22 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SITE, SERVICES as SITE_SERVICES } from "@/constants/site";
+import logo from "@/assets/ralogo-removebg-preview.png";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const GOLD_GRADIENT =
   "linear-gradient(135deg,var(--color-brand-gold-400),var(--color-brand-gold-600))";
 
 const QUICK_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Blog", href: "/#blog" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const FOOTER_SERVICES = SITE_SERVICES.slice(0, 4).map((service) => ({
   label: service.title,
-  href: "/services",
+  href: "/#services",
 }));
 
 // Social links are left out until the client supplies real handles —
@@ -100,15 +101,13 @@ export function Footer() {
         >
           {/* Brand column */}
           <motion.div variants={fadeUp} transition={{ duration: 0.6, ease: EASE }}>
-            <Link href="/" className="group flex items-center gap-2.5">
-              <span
-                style={{ backgroundImage: GOLD_GRADIENT }}
-                className="flex size-8 items-center justify-center rounded-md text-brand-navy-950 shadow-[0_4px_14px_-4px_rgba(198,161,91,0.6)] ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105"
-              >
-                <Boxes className="size-4" />
-              </span>
-              <span className="font-display text-lg font-bold tracking-tight text-white">
-                R&amp;A MediaWorks
+            <Link href="/" className="group flex items-center">
+              <span className="flex h-11 items-center rounded-lg bg-white px-3 py-2 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.25)] ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src={logo}
+                  alt="R&A MediaWorks"
+                  className="h-full w-auto object-contain"
+                />
               </span>
             </Link>
 

@@ -35,9 +35,14 @@ export default function BlogPage() {
                 href={`/blog/${post.slug}`}
                 className="group rounded-2xl border border-mist-300/70 bg-white p-7 shadow-[0_16px_40px_-28px_rgba(11,18,32,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold-400/60 hover:shadow-[0_24px_50px_-24px_rgba(198,161,91,0.4)] sm:p-9"
               >
-                <p className="text-xs font-semibold uppercase tracking-wider text-mist-600">
-                  {formatPostDate(post.date)}
-                </p>
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex items-center rounded-full bg-brand-gold-500/10 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-brand-gold-600">
+                    {post.category}
+                  </span>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-mist-500">
+                    {formatPostDate(post.date)} · {post.readTime}
+                  </p>
+                </div>
                 <h3 className="mt-3 text-xl font-bold tracking-tight text-ink sm:text-2xl">
                   {post.title}
                 </h3>

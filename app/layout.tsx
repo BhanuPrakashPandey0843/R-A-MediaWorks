@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { playfair, manrope } from "@/lib/fonts";
+import { playfair, inter } from "@/lib/fonts";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SITE } from "@/constants/site";
@@ -28,9 +28,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${manrope.variable} antialiased`}
+      className={`${playfair.variable} ${inter.variable} antialiased`}
     >
-      <body className="flex min-h-svh flex-col bg-brand-navy-900 text-ink">
+      <body className="flex min-h-svh flex-col bg-white text-ink">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

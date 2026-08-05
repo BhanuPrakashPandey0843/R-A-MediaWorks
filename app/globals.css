@@ -10,41 +10,42 @@
    ========================================================================== */
 
 @theme {
-  /* Navy — primary brand color, depth scale */
-  --color-navy-950: #050b16;
-  --color-navy-900: #0a1428;
-  --color-navy-800: #0f1e3d;
-  --color-navy-700: #162a52;
-  --color-navy-600: #1f3a6e;
-  --color-navy-500: #2c4d8f;
+  /* Navy — primary brand color, depth scale.
+     Exact client-supplied hex values (from the logo/brochure). */
+  --color-navy-950: #0d1b2a; /* Charcoal */
+  --color-navy-900: #0c2b48; /* Deep Navy */
+  --color-navy-800: #1b263b; /* Muted Navy */
+  --color-navy-700: #24344f;
+  --color-navy-600: #33496d;
+  --color-navy-500: #45608c;
 
-  /* Gold — accent brand color */
-  --color-gold-600: #a6811f;
-  --color-gold-500: #c6a15b;
-  --color-gold-400: #d8bb7e;
-  --color-gold-300: #e8d6ab;
-  --color-gold-200: #f3e9d2;
+  /* Gold — accent brand color, scale built from the client's exact Gold hex */
+  --color-gold-600: #8c6825;
+  --color-gold-500: #ad8330; /* Gold */
+  --color-gold-400: #c29b52;
+  --color-gold-300: #d8b87a;
+  --color-gold-200: #ecdcb8;
 
-  /* Navbar / hero palette — deep navy + premium gold accent */
-  --color-brand-navy-950: #12123f;
-  --color-brand-navy-900: #1c1c6c;
-  --color-brand-navy-800: #232378;
-  --color-brand-navy-700: #2c2c86;
-  --color-brand-gold-600: #a6811f;
-  --color-brand-gold-500: #c6a15b;
-  --color-brand-gold-400: #d8bb7e;
+  /* Navbar / hero palette — same Deep Navy + Gold, no separate hue */
+  --color-brand-navy-950: #0d1b2a; /* Charcoal */
+  --color-brand-navy-900: #0c2b48; /* Deep Navy */
+  --color-brand-navy-800: #1b263b; /* Muted Navy */
+  --color-brand-navy-700: #24344f;
+  --color-brand-gold-600: #8c6825;
+  --color-brand-gold-500: #ad8330; /* Gold */
+  --color-brand-gold-400: #c29b52;
 
   /* Neutrals */
-  --color-ivory: #faf8f3;
-  --color-ink: #0b1220;
-  --color-mist-900: #3a3f4a;
-  --color-mist-700: #5c6270;
-  --color-mist-500: #8b90a0;
+  --color-ivory: #f5f5f5; /* Soft Gray */
+  --color-ink: #0d1b2a; /* Charcoal */
+  --color-mist-900: #1b263b; /* Muted Navy */
+  --color-mist-700: #4d5a6e;
+  --color-mist-500: #7c8797;
   --color-mist-300: #d8dae2;
   --color-mist-100: #eef0f4;
 
   /* Semantic aliases — reference the palette above, not raw hex */
-  --color-background: var(--color-ivory);
+  --color-background: #ffffff; /* White */
   --color-foreground: var(--color-ink);
   --color-primary: var(--color-navy-900);
   --color-accent: var(--color-gold-500);
@@ -52,9 +53,9 @@
   --color-border: var(--color-mist-300);
   --color-surface: #ffffff;
 
-  /* Typography */
+  /* Typography — Playfair Display for headings, Inter for body/UI */
   --font-display: var(--font-playfair);
-  --font-sans: var(--font-manrope);
+  --font-sans: var(--font-inter);
 }
 
 /* Non-color tokens — not routed through @theme since they don't need to
@@ -63,7 +64,7 @@
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
   --max-width-content: 1440px;
-  --glow-gold: rgba(198, 161, 91, 0.45);
+  --glow-gold: rgba(173, 131, 48, 0.45);
 }
 
 * {

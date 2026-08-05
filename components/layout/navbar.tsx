@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Boxes } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS, CONSULTATION_LINK } from "@/constants/site";
+import logo from "@/assets/ralogo-removebg-preview.png";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const GOLD_GRADIENT =
@@ -49,18 +51,19 @@ export function Navbar() {
     >
       <Container>
         <div className="flex h-16 items-center justify-between lg:h-20">
-          <Link href="/" className="group flex items-center gap-2.5">
+          <Link href="/" className="group flex items-center">
             <motion.span
-              whileHover={{ scale: 1.06, rotate: -3 }}
+              whileHover={{ scale: 1.06 }}
               transition={{ duration: 0.3, ease: EASE }}
-              style={{ backgroundImage: GOLD_GRADIENT }}
-              className="flex size-8 items-center justify-center rounded-md text-brand-navy-950 shadow-[0_4px_14px_-4px_rgba(198,161,91,0.7)] ring-1 ring-white/20"
+              className="flex h-12 items-center rounded-lg bg-white px-3 py-2 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.25)] ring-1 ring-black/5 lg:h-14"
             >
-              <Boxes className="size-4" />
+              <Image
+                src={logo}
+                alt="R&A MediaWorks"
+                preload
+                className="h-full w-auto object-contain"
+              />
             </motion.span>
-            <span className="font-display text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-brand-gold-300 lg:text-xl">
-              R&amp;A MediaWorks
-            </span>
           </Link>
 
           <nav className="hidden items-center gap-9 lg:flex">

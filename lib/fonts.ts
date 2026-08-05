@@ -1,4 +1,4 @@
-import { Manrope, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 
 /**
  * Editorial serif for headings — elegant, high-contrast, luxury feel.
@@ -11,10 +11,11 @@ export const playfair = Playfair_Display({
 });
 
 /**
- * Clean geometric sans for body copy, navigation, and UI chrome.
+ * Clean, modern sans for body copy, navigation, and UI chrome — pairs with
+ * Playfair Display for a premium editorial feel, per brand guidelines.
  */
-export const manrope = Manrope({
+export const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-inter",
 });
