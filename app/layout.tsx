@@ -3,6 +3,7 @@ import { playfair, inter } from "@/lib/fonts";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SITE } from "@/constants/site";
+import logo from "@/assets/ralogo-removebg-preview.png";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   metadataBase: new URL("https://ramediaworks.com"),
+  icons: [{ rel: "icon", url: logo.src }],
   openGraph: {
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,

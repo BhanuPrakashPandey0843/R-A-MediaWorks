@@ -112,10 +112,10 @@ export function Services() {
             <span className="h-px w-8 bg-brand-gold-500" />
           </div>
 
-          <h2 className="font-display text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl">
-            Ready To Tell Your Story?{" "}
-            <span className="text-brand-gold-600">Trust The Experts</span>
-          </h2>
+          <h2 className="font-display whitespace-nowrap text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl">
+  Ready To Tell Your Story?{" "}
+  <span className="text-brand-gold-600">Trust The Experts</span>
+</h2>
         </motion.div>
 
         <motion.div

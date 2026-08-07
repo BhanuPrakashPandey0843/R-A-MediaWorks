@@ -40,7 +40,7 @@ export function BlogShowcase() {
           <div className="mb-4 flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-brand-gold-500" />
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-brand-gold-600">
-              From The Blog
+             NOTES FROM THE DESK
             </p>
             <span className="h-px w-8 bg-brand-gold-500" />
           </div>

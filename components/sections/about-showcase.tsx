@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { Container } from "@/components/ui/container";
-import phoneFrame from "@/assets/MiddlePhone.png";
 import mobInsideImage from "@/assets/mobinside.jpg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -31,7 +30,7 @@ export function AboutShowcase() {
           <h2 className="font-display max-w-lg text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
             Every brand is a story.{" "}
             <span className="text-brand-gold-600">
-              Most just haven&apos;t found their editor.
+              Most just haven&apos;t found their storyteller.
             </span>
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-mist-700">
@@ -66,43 +65,60 @@ export function AboutShowcase() {
           </motion.div>
         </motion.div>
 
-        {/* Right: phone mockup with looping showcase video */}
+        {/* Right: polished product showcase mockup */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
-          className="relative mx-auto w-full max-w-[220px] lg:max-w-[240px]"
+          className="relative mx-auto w-full max-w-[260px] sm:max-w-[280px] lg:max-w-[300px]"
         >
-          {/* Soft gold glow behind the phone frame for premium depth */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -inset-6 -z-10 rounded-full bg-brand-gold-500/15 blur-2xl"
+            className="pointer-events-none absolute inset-x-6 top-6 -z-10 h-40 rounded-full bg-brand-gold-500/20 blur-3xl"
           />
 
-          <div className="relative aspect-[352/709] w-full">
-            {/*
-              Image sits in the transparent "screen" cutout of MiddlePhone.png.
-              The mobile screen is now populated with mobinside.jpg.
-            */}
-            <div className="absolute inset-x-[4.8%] top-[5.2%] bottom-[3.6%] overflow-hidden rounded-[10%]">
+          <div className="relative mx-auto aspect-[9/16] w-full rounded-[2.3rem] border border-white/70 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 p-3 shadow-[0_30px_80px_-24px_rgba(0,0,0,0.6)]">
+            <div className="absolute left-1/2 top-3 h-6 w-24 -translate-x-1/2 rounded-full bg-slate-950/80" />
+            <div className="absolute bottom-3 left-1/2 h-8 w-24 -translate-x-1/2 rounded-full bg-slate-950/60 blur-xl" />
+
+            <div className="relative h-full overflow-hidden rounded-[1.8rem] border border-white/10 bg-brand-navy-950">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(198,161,91,0.28),_transparent_60%)]" />
               <Image
                 src={mobInsideImage}
                 alt="Inside mobile screen preview"
                 fill
                 className="object-cover"
-                sizes="240px"
+                sizes="300px"
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-950/10 via-transparent to-slate-950/30" />
 
-            {/* Phone frame overlay — sits above the content inside the phone screen */}
-            <Image
-              src={phoneFrame}
-              alt="Mobile phone frame previewing R&A MediaWorks storytelling"
-              fill
-              sizes="240px"
-              className="pointer-events-none z-10 object-contain"
-            />
+              <div className="absolute inset-x-4 top-4 flex items-center justify-between rounded-full border border-white/15 bg-white/10 px-3 py-2 backdrop-blur-sm">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-brand-gold-500" />
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/85">
+                    Story-led
+                  </span>
+                </div>
+                <span className="text-[10px] font-medium uppercase tracking-[0.24em] text-white/70">
+                  R&A
+                </span>
+              </div>
+
+              <div className="absolute inset-x-4 bottom-4 rounded-[1.4rem] border border-white/20 bg-white/90 p-4 shadow-lg backdrop-blur">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-brand-gold-600">
+                  Brand storytelling
+                </p>
+                <h3 className="mt-2 font-display text-lg font-semibold leading-tight text-ink">
+                  Designed to feel premium,
+                  <br />
+                  clear, and memorable.
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist-700">
+                  From strategy to visuals, every detail is crafted with purpose.
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </Container>

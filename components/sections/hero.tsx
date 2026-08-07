@@ -257,7 +257,7 @@ export function Hero() {
                     style={{ backgroundImage: GOLD_GRADIENT }}
                     className="relative inline-flex h-14 w-full items-center justify-center gap-2 rounded-full px-8 text-sm font-semibold text-brand-navy-950 shadow-lg ring-1 ring-white/25 transition-all duration-300 hover:brightness-110 sm:w-auto"
                   >
-                    Book a Consultation
+                    Book a Free Consultation
                     <motion.div
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 2, repeat: Infinity }}

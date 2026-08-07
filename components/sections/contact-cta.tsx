@@ -225,7 +225,7 @@ export function ContactCta() {
 
               >
 
-                Book a Consultation
+              Book a Free Consultation
 
               </a>
 

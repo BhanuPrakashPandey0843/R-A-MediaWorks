@@ -53,15 +53,15 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between lg:h-20">
           <Link href="/" className="group flex items-center">
             <motion.span
-              whileHover={{ scale: 1.06 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3, ease: EASE }}
-              className="flex h-12 items-center rounded-lg bg-white px-3 py-2 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.25)] ring-1 ring-black/5 lg:h-14"
+              className="flex h-14 items-center rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] ring-1 ring-black/10 sm:h-16 sm:px-4 sm:py-3 lg:h-16"
             >
               <Image
                 src={logo}
                 alt="R&A MediaWorks"
                 preload
-                className="h-full w-auto object-contain"
+                className="h-full w-auto max-w-[150px] object-contain sm:max-w-[170px]"
               />
             </motion.span>
           </Link>
@@ -108,7 +108,7 @@ export function Navbar() {
                 style={{ backgroundImage: GOLD_GRADIENT }}
                 className="inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-semibold text-brand-navy-950 ring-1 ring-white/25 transition-[filter] duration-300 hover:brightness-110"
               >
-                Book a Consultation
+                Book a Free Consultation
               </Link>
             </motion.div>
           </div>
@@ -174,7 +174,7 @@ export function Navbar() {
                   style={{ backgroundImage: GOLD_GRADIENT }}
                   className="inline-flex h-12 w-full items-center justify-center rounded-full px-6 text-sm font-semibold text-brand-navy-950 ring-1 ring-white/25"
                 >
-                  Book a Consultation
+                Book a Free Consultation
                 </Link>
               </div>
             </Container>
